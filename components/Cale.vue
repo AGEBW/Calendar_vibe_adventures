@@ -54,12 +54,14 @@ export default {
   },
   methods: {
     adjustRange(days) {
-      if (this.selectedDates.length > 0) {
-        this.startDate =days>0?dayjs(this.selectedDates[0]).subtract(Math.abs(days), 'day').toDate():this.selectedDates[0];
-        this.endDate = dayjs(this.selectedDates[0]).add(days, 'day').toDate();
-        this.selectedDates =this.endDate?[this.startDate, this.endDate]:[this.startDate];
-      }
+    if (this.selectedDates.length != 0) {
+      const selectedDate = this.selectedDates[0];
+      this.startDate = days != 0 ? dayjs(selectedDate).subtract(Math.abs(days), 'day').toDate() : selectedDate;
+      this.endDate = days != 0 ? dayjs(selectedDate).add(days, 'day').toDate() : null;
+      this.selectedDates = this.endDate ? [this.startDate, this.endDate] : [this.startDate];
     }
+  },
+
   }
 };
 </script>

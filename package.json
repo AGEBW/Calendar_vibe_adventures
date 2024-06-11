@@ -12,7 +12,7 @@
     "core-js": "^3.25.3",
     "dayjs": "^1.11.11",
     "nuxt": "^2.15.8",
-    "primeicons": "^7.0.0",
+    "primeicons": "^5.0.0",
     "primevue": "^2.10.4",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",

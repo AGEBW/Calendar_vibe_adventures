@@ -10,7 +10,7 @@
           readonly
         ></v-text-field>
         <div class="buttons">
-          <Button @click="adjustRange(0)">0</Button>
+          <Button @click="adjustRange(0)">+0</Button>
           <Button @click="adjustRange(1)">+1</Button>
           <Button @click="adjustRange(3)">+3</Button>
           <Button @click="adjustRange(5)">+5</Button>

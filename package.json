@@ -1,0 +1,26 @@
+{
+  "name": "calendar-app-2",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "core-js": "^3.25.3",
+    "dayjs": "^1.11.11",
+    "nuxt": "^2.15.8",
+    "primeicons": "^7.0.0",
+    "primevue": "^2.10.4",
+    "vue": "^2.7.10",
+    "vue-server-renderer": "^2.7.10",
+    "vue-template-compiler": "^2.7.10",
+    "vue2-datepicker": "^3.11.1",
+    "vuetify": "^2.6.10"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.12.3"
+  }
+}

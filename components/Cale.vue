@@ -55,13 +55,9 @@ export default {
   methods: {
     adjustRange(days) {
       if (this.selectedDates.length > 0) {
-        this.startDate = this.selectedDates[0];
-
-        if(days>0){
-          this.startDate = dayjs(this.selectedDates[0]).subtract(Math.abs(days), 'day').toDate();
-        }
+        this.startDate =days>0?dayjs(this.selectedDates[0]).subtract(Math.abs(days), 'day').toDate():this.selectedDates[0];
         this.endDate = dayjs(this.selectedDates[0]).add(days, 'day').toDate();
-        this.selectedDates = [this.startDate, this.endDate];
+        this.selectedDates =this.endDate?[this.startDate, this.endDate]:[this.startDate];
       }
     }
   }

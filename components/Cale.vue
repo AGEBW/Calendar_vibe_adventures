@@ -18,16 +18,16 @@
           <Button @click="adjustRange(15)">+15</Button>
         </div>
         <Calendar
-        v-model="selectedDates"
-        selectionMode="range"
-        :inline="true"
-        :showButtonBar="true"
-        :showWeek="true"
-        class="p-calendar"
-        style="width: 100%;"
-        :dayStyle="{ 'background-color': 'green', color: 'white' }"
-      />
-
+          v-model="selectedDates"
+          selectionMode="range"
+          :inline="true"
+          :showButtonBar="true"
+          :showWeek="true"
+          class="p-calendar"
+          style="width: 100%;"
+          :dayStyle="{ 'background-color': 'green', color: 'white' }"
+           @date-select="onDateSelect"
+        />
       </v-card-text>
     </v-card>
   </div>
@@ -42,6 +42,9 @@ export default {
       selectedDates: [],
       startDate: null,
       endDate: null,
+      originalStartDate: null,
+      originalEndDate: null,
+      manualSelection: true,
     };
   },
   computed: {
@@ -52,16 +55,28 @@ export default {
       return '';
     }
   },
-  methods: {
-    adjustRange(days) {
-    if (this.selectedDates.length != 0) {
-      const selectedDate = this.selectedDates[0];
-      this.startDate = days != 0 ? dayjs(selectedDate).subtract(Math.abs(days), 'day').toDate() : selectedDate;
-      this.endDate = days != 0 ? dayjs(selectedDate).add(days, 'day').toDate() : null;
-      this.selectedDates = this.endDate ? [this.startDate, this.endDate] : [this.startDate];
+  watch: {
+    selectedDates(newDates) {
+      if(this.manualSelection ){
+        console.log('seleccionados: ',newDates);
+        this.originalStartDate =newDates[0];
+        this.originalEndDate = newDates[1]? newDates[1]:newDates[0];
+      }
     }
   },
-
+  methods: {
+    onDateSelect() {
+      this.manualSelection = true;
+    },
+    adjustRange(days) {
+      if (this.originalStartDate && this.originalEndDate) {
+        this.manualSelection = false;
+        const start = dayjs(this.originalStartDate).subtract(days, 'day').toDate();
+        const end = dayjs(this.originalEndDate).add(days, 'day').toDate();
+        this.selectedDates = [start, end];
+        console.log('seleccionados',this.selectedDates);
+      }
+    }
   }
 };
 </script>
